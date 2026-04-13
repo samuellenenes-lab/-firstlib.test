@@ -1,0 +1,58 @@
+---
+title: "utilisation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{utilisation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(package.test)
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+library(package.test)
+```
+
+
+# Présentation
+Cette vignette montre comment utiliser le package pour filtrer les données
+de comptage vélo puis produire un graphique hebdomadaire.
+
+#Charger les données
+Le jeu de données df_velo est inclus dans le package.
+
+
+
+```{r, message=FALSE, warning=FALSE}
+data("df_velo")
+head(df_velo)
+```
+
+
+#Filtrer une boucle
+On sélectionne ici la boucle 880.
+
+
+```{r, message=FALSE, warning=FALSE}
+df_filtre <- filtrer_trajet(trajet = df_velo, boucle = c(880))
+head(df_filtre)
+```
+
+#Tracer la distribution hebdomadaire
+On utilise ensuite les données filtrées pour afficher la distribution
+des trajets selon le jour de la semaine.
+
+
+```{r, message=FALSE, warning=FALSE}
+plot_distribution_semaine(df_filtre)
+```
