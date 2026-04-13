@@ -13,7 +13,7 @@ Imports:
     ggplot2,
     readr
 Suggests:
-    testthat,
+    testthat (>= 3.0.0),
     covr,
     knitr,
     rmarkdown
