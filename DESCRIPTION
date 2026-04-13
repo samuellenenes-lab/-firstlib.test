@@ -17,3 +17,6 @@ Suggests:
     covr,
     knitr,
     rmarkdown
+Depends: 
+    R (>= 3.5)
+LazyData: true
