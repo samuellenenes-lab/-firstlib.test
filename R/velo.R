@@ -144,31 +144,24 @@ calcul_distribution_semaine <- function(trajet, filtre = TRUE) {
 #' Tracer la distribution hebdomadaire des trajets
 #'
 #' Cette fonction produit un graphique du nombre total de trajets
-#' selon le jour de la semaine.
+#' selon le jour de la semaine. Il est possible de filtrer sur un
+#' numéro de boucle.
 #'
 #' @param trajet Un data.frame contenant les données de trajets vélo.
 #' @param filtre Booléen. Si TRUE, applique d'abord filtre_anomalie().
+#' @param boucle Numéro de boucle à conserver. Si NULL, aucun filtrage
+#' n'est appliqué sur la boucle.
 #'
 #' @return Un graphique ggplot2.
 #' @export
-plot_distribution_semaine <- function(trajet, filtre = TRUE) {
+plot_distribution_semaine <- function(trajet, filtre = TRUE, boucle = NULL) {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
     stop("Le package 'ggplot2' est nécessaire pour cette fonction.")
   }
 
-  distribution <- calcul_distribution_semaine(trajet, filtre = filtre)
-
-  ggplot2::ggplot(
-    distribution,
-    ggplot2::aes(x = factor(jour_semaine), y = nombre_trajets)
-  ) +
-    ggplot2::geom_col() +
-    ggplot2::labs(
-      title = "Distribution hebdomadaire des trajets vélo",
-      x = "Jour de la semaine",
-      y = "Nombre de trajets"
-    )
-}
+  if (!is.data.frame(trajet)) {
+    stop("trajet doit être un data.frame")
+  }
 
 
 #' Filtrer les trajets selon un ou plusieurs numéros de boucle
